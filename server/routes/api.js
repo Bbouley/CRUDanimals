@@ -29,19 +29,23 @@ router.post('/animals', function(req, res, next) {
 });
 
 //put single animal
-router.put('/animal/edit/:id', function(req, res, next) {
+router.put('/animal/:id', function(req, res, next) {
   console.log(req.body);
   var query = {'_id': req.params.id};
   var update = req.body;
   var options = {new:true};
   Animal.findOneAndUpdate(query, update, options, function(err , animal){
-    res.json(animal);
+      res.json(animal);
   });
 });
 
 //delete single animal
 router.delete('/animal/:id', function(req, res, next) {
-res.render('index', { title: 'Animals' });
+  var query = {'_id': req.params.id};
+  console.log(query);
+  Animal.findOneAndRemove(query, function(err, animal){
+    res.json(animal);
+  });
 });
 
 module.exports = router;
