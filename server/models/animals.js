@@ -10,4 +10,4 @@ var Animal = new Schema({
 
 mongoose.model('animals', Animal);
 
-mongoose.connect('mongodb://localhost/animals');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/animals');
