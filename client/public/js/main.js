@@ -13,6 +13,7 @@ $(document).on('ready', function() {
 
   $('#show-animals').on('click', function(e){
     e.preventDefault();
+    showAnimals();
     $('.showAnimals').show();
   });
 
@@ -41,6 +42,8 @@ $(document).on('ready', function() {
         $('#animal-age').val('');
         $('#animal-ability').val('');
         $('#success').show();
+        showAnimals();
+        $('.showAnimals').show();
     });
   });
 
@@ -103,6 +106,7 @@ $(document).on('ready', function() {
 
 function showAnimals(){
   $('.showAnimals').html('');
+  $('.showAnimals').html('<tr><th>Name</th><th>Type</th><th>Age</th><th>Ability</th><th>Edit</th><th>Delete</th></tr>');
   $.get('/api/v1/animals', function(data){
     for (var i = 0; i < data.length; i++) {
       $('.showAnimals').append(
